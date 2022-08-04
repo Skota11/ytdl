@@ -27,7 +27,7 @@ function save(id, res) {
       .output(mixvideopath)
       .outputOptions(['-map 0:v', '-map 1:a', '-c:a aac', '-c:v copy'])
       .on('start', (command) => {
-        console.log('TCL: command -> command', command)
+//         console.log('TCL: command -> command', command)
       })
       .on('error', (error) => console.log("errrrr", error))
       .on('end', () => { console.log("Conmpale"); res.send(`<p>大変長らくお待たせしました。 => </p><a href='https://ytdl.skota11.repl.co/v/${youtubeId}'>動画</a>`); })
