@@ -42,13 +42,21 @@ app.get('/v/:id', (req, res) => {
   res.send("Please enter the movie quality")
 });
 app.get('/v/:id/:rank', (req, res) => {
-  v_path = path.join(__dirname, '/' + req.params.id + '_' + req.params.rank +'.mp4');
+  v_path = path.join(__dirname, '/' + req.params.id + '_' + req.params.rank + '.mp4');
   if (fs.existsSync(v_path)) {
     res.sendFile(v_path);
   } else {
     res.send("Sorry, We couldn't find the movie");
   }
 });
+app.get('/a/:id', (req, res) => {
+    a_path = path.join(__dirname, '/' + req.params.id + '_audio.wav');
+  if (fs.existsSync(a_path)) {
+    res.sendFile(a_path);
+  } else {
+    res.send("Sorry, We couldn't find the audio");
+  }
+})
 
 app.get('/s/:id/highest', (req, res) => {
   const Id = req.params.id;
@@ -69,6 +77,14 @@ app.get('/s/:id/normal', (req, res) => {
     res.send("Sorry, This is not youtubeID")
   }
 });
+app.get('/s/:id/audio', (req, res) => {
+  const youtubeId = req.params.id;
+  const url = BASE_PATH + youtubeId;
+  const audio_ytdl = ytdl(url, { quality: 'highestaudio' })
+  audio_ytdl.pipe(fs.createWriteStream(`${youtubeId}_audio.wav`));
+
+  res.send(`<p>AudioLink</p><a href='https://ytdl.skota11.repl.co/a/${youtubeId}'>Audio</a>`)
+})
 
 app.listen(3000, () => {
   console.log('server started')
