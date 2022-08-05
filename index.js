@@ -7,7 +7,7 @@ const BASE_PATH = `https://www.youtube.com/watch?v=`;
 
 const app = express();
 
-function save(id, res) {
+function save_highest(id, res) {
   youtubeId = id;
   const url = BASE_PATH + youtubeId;
   const moviepath = path.join(__dirname, '/' + youtubeId + '_video.mp4')
@@ -61,7 +61,7 @@ app.get('/a/:id', (req, res) => {
 app.get('/s/:id/highest', (req, res) => {
   const Id = req.params.id;
   if (ytdl.validateID(Id)) {
-    save(Id, res);
+    save_highest(Id, res);
   } else {
     res.send("Sorry, This is not youtubeID")
   }
