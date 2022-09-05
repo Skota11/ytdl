@@ -1,1 +1,75 @@
-<h1>URL/s/YoutubeID/{normal / highest}</h1>
+<html>
+  <head>
+    <title>YoutubeDownload</title>
+    <meta charset="utf-8">
+    <style>
+      *{
+        color: #404040;
+      }
+      #ytid-p {
+        text-align: center;
+      }
+      #ytid {
+        font-size: 80px;
+        height: 100px;
+        width: 50%;
+        border-radius: 30px;
+        border: none;
+        box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .5);
+      }
+      #mode-p {
+        text-align: center;
+      }
+      button {
+        appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #4676D7;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 16px;
+      }
+      #top {
+        text-align: center;
+      }
+      ::placeholder {
+   font-size: 0.75em;
+   color: #aaa;
+}
+    </style>
+  </head>
+  <body>
+    <h1 id="top">Downloader</h1>
+    <p>
+      <p id="ytid-p">
+      <input  placeholder="YoutubeID" type="text" id="ytid">
+      </p>
+    </p>
+      <div id="mode">
+        <p id="mode-p">
+      <button id="high">highestモード</button>
+      <button id="normal">normalモード</button>
+      <button id="audio">audioモード</button>
+        </p>
+      </div>
+    <p style="margin: 15px 0 0 10px;">
+      highestモード : 時間はかかりますが、最高品質です。<br>
+      normalモード : 時間はかかりませんが、品質は悪いです。<br>
+      audioモード : 最高品質の音声です。
+    </p>
+  </body>
+  <script>
+    document.getElementById("high").onclick = function() {
+  id = document.getElementById("ytid").value
+      window.location.href = `/s/${id}/highest`;
+};
+        document.getElementById("normal").onclick = function() {
+  id = document.getElementById("ytid").value
+          window.location.href = `/s/${id}/normal`;
+};
+        document.getElementById("audio").onclick = function() {
+  id = document.getElementById("ytid").value
+          window.location.href = `/s/${id}/audio`;
+};
+  </script>
+</html>
